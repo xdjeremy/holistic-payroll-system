@@ -7,7 +7,7 @@ interface Props {
 
 const PageTitle: FC<Props> = ({title, children}) => {
     return (
-        <div className={'flex flex-row items-center justify-between w-full'}>
+        <div className={'flex flex-row items-center justify-between w-full py-4'}>
             <h2 className={'font-medium text-xl'}>
                 {title}
             </h2>
