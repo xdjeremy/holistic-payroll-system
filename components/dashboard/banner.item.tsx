@@ -2,17 +2,20 @@ import React, { FC } from "react";
 import Image from "next/image";
 import PunchIn from "../../assets/images/punch_in.svg";
 import PunchOut from "../../assets/images/punch_out.svg";
+import { useUser } from "@/context";
 
 const BannerItem: FC = () => {
+  const { user } = useUser();
+
   return (
     <div
       className={
-        "flex flex-row items-center justify-between rounded-lg bg-white px-4 py-2 my-4"
+        "my-4 flex flex-row items-center justify-between rounded-lg bg-white px-4 py-2"
       }
     >
       <div className={"flex flex-col gap-1"}>
         <h2 className={"font-bold text-[#0A0A0A]"}>
-          Good to see you, Jhenrika 👋
+          Good to see you, {user?.name} 👋
         </h2>
         <p className={"text-sm text-[#616161]"}>
           You came 15 minutes early today.
