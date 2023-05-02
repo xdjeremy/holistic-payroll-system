@@ -3,24 +3,24 @@
  */
 
 export enum Collections {
-  Attendances = "attendances",
-  Users = "users",
+    Attendances = "attendances",
+    Users = "users",
 }
 
 // Alias types for improved usability
-export type IsoDateString = string;
-export type RecordIdString = string;
-export type HTMLString = string;
+export type IsoDateString = string
+export type RecordIdString = string
+export type HTMLString = string
 
 // System fields
 export type BaseSystemFields<T = never> = {
-  id: RecordIdString;
-  created: IsoDateString;
-  updated: IsoDateString;
-  collectionId: string;
-  collectionName: Collections;
-  expand?: T;
-};
+    id: RecordIdString
+    created: IsoDateString
+    updated: IsoDateString
+    collectionId: string
+    collectionName: Collections
+    expand?: T
+}
 
 export type AuthSystemFields<T = never> = {
   email: string;
@@ -31,14 +31,10 @@ export type AuthSystemFields<T = never> = {
 
 // Record types for each collection
 
-export enum AttendancesTypeOptions {
-  "in" = "in",
-  "out" = "out",
-}
-
 export type AttendancesRecord = {
   user: RecordIdString;
-  type: AttendancesTypeOptions;
+  punch_in: IsoDateString;
+  punch_out?: IsoDateString;
 };
 
 export enum UsersPrivilegeOptions {
