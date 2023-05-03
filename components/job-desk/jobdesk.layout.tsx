@@ -9,9 +9,10 @@ import JobDeskTitle from "@/components/common/jobdesk.title";
 interface Props {
   children: ReactNode;
   activeTab: JobDeskPageTabs;
+  setActiveTab: (tab: JobDeskPageTabs) => void;
 }
 
-const JobDeskLayout: FC<Props> = ({ children, activeTab }) => {
+const JobDeskLayout: FC<Props> = ({ children, activeTab, setActiveTab }) => {
   return (
     <div className={"w-full rounded-lg bg-white"}>
       <div className={"flex flex-row items-center justify-evenly px-4"}>
@@ -24,6 +25,7 @@ const JobDeskLayout: FC<Props> = ({ children, activeTab }) => {
                 : "text-[#757575]",
               "cursor-pointer p-2 capitalize"
             )}
+            onClick={() => setActiveTab(link)}
           >
             {link}
           </span>
