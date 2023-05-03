@@ -20,7 +20,7 @@ const userNavLinks: UserNavLinks[] = [
   {
     icon: <BriefcaseIcon className={"h-5 w-5"} />,
     label: "Job Desk",
-    href: "/job-desk",
+    href: "/jobdesk",
   },
   {
     icon: <Cog8ToothIcon className={"h-5 w-5"} />,
