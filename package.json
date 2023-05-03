@@ -10,6 +10,8 @@
     "typegen": "npx pocketbase-typegen --db ./pocketbase/pb_data/data.db --out ./types/pocketbase-types.ts"
   },
   "dependencies": {
+    "@dicebear/collection": "^6.0.3",
+    "@dicebear/core": "^6.0.3",
     "@heroicons/react": "^2.0.17",
     "@types/node": "18.16.0",
     "@types/react": "18.0.38",
