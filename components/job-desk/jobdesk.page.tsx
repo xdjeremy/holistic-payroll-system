@@ -10,6 +10,13 @@ const JobDeskPage = () => {
     JobDeskPageTabs.ATTENDANCE
   );
 
+  const renderTab = () => {
+    switch (activeTab) {
+      case JobDeskPageTabs.ATTENDANCE:
+        return <AttendanceCard />;
+    }
+  };
+
   return (
     <>
       <PageTitle title={"Job Desk"}>
@@ -20,7 +27,7 @@ const JobDeskPage = () => {
       </PageTitle>
       <div className={"my-4 flex w-full flex-row gap-8"}>
         <UserInfoCard />
-        <AttendanceCard />
+        {renderTab()}
       </div>
     </>
   );
