@@ -6,6 +6,7 @@ import AttendanceCard from "@/components/job-desk/attendance/attendance.card";
 import { JobDeskPageTabs } from "@/components/job-desk/jobdesk.links";
 import JobDeskLayout from "@/components/job-desk/jobdesk.layout";
 import AllowanceCard from "@/components/job-desk/allowance/allowance.card";
+import LeaveCard from "@/components/job-desk/leave/leave.card";
 
 const JobDeskPage = () => {
   const [activeTab, setActiveTab] = useState<JobDeskPageTabs>(
@@ -18,6 +19,8 @@ const JobDeskPage = () => {
         return <AttendanceCard />;
       case JobDeskPageTabs.ALLOWANCE:
         return <AllowanceCard />;
+      case JobDeskPageTabs.LEAVE:
+        return <LeaveCard />;
     }
   };
 
