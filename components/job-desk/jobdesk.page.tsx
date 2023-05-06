@@ -8,6 +8,7 @@ import JobDeskLayout from "@/components/job-desk/jobdesk.layout";
 import AllowanceCard from "@/components/job-desk/allowance/allowance.card";
 import LeaveCard from "@/components/job-desk/leave/leave.card";
 import AddLeaveModal from "@/components/job-desk/leave/addLeave.modal";
+import FolderCard from "@/components/job-desk/folder/folder.card";
 
 const JobDeskPage = () => {
   const [activeTab, setActiveTab] = useState<JobDeskPageTabs>(
@@ -24,13 +25,8 @@ const JobDeskPage = () => {
         return <AllowanceCard />;
       case JobDeskPageTabs.LEAVE:
         return <LeaveCard />;
-    }
-  };
-
-  const actionButtonHandler = async () => {
-    switch (activeTab) {
-      case JobDeskPageTabs.ATTENDANCE:
-        return;
+      case JobDeskPageTabs.FOLDER:
+        return <FolderCard />;
     }
   };
 

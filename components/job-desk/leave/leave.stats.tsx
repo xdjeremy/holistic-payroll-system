@@ -20,7 +20,7 @@ const LeaveStats: FC<Props> = ({ data, error }) => {
   return (
     <div
       className={
-        "grid grid-cols-1 divide-x rounded-lg border border-[#EDEDED] px-6 py-4 lg:grid-cols-3"
+        "grid grid-cols-1 gap-5 rounded-lg border border-[#EDEDED] px-6 py-4 md:grid-cols-3 md:gap-0 md:divide-x"
       }
     >
       {!data &&
