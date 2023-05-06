@@ -36,6 +36,8 @@ const EmployeesTable = () => {
       <EmployeesTableItems name={'Kathryn Murphy'} id={'A0B1C044'} status={'Part-time'} dept={'IT'} shift={'17h-22h'} date={'6/19/14'} role={'Trust Administrator'}/>
       <EmployeesTableItems name={'Courtney Henry'} id={'A0B1C099'} status={'Full-time'} dept={'Customer Success'} shift={'8h-17h'} date={'7/11/19'} role={'Vice President'}/>
       <EmployeesTableItems name={'Jane Cooper'} id={'A0B1C095'} status={'Full-time'} dept={'Product'} shift={'8h-17h'} date={'8/2/19'} role={'Trust Office'}/>
+      <EmployeesTableItems name={'Jeremy Neigh'} id={'A0B1C028'} status={'Part-time'} dept={'Support'} shift={'8h-17h'} date={'9/23/16'} role={'Tax officer'}/>
+      <EmployeesTableItems name={'Jeremy Neigh'} id={'A0B1C028'} status={'Part-time'} dept={'Support'} shift={'8h-17h'} date={'9/23/16'} role={'Tax officer'}/>
       </tbody>
     </table>
   );

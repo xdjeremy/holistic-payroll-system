@@ -4,6 +4,9 @@ import {Button, PageTitle} from "@/components/common";
 import {EnvelopeIcon} from "@heroicons/react/24/outline";
 import SearchBar from "@/components/admin/all-employees/search-bar";
 import EmployeesTable from "@/components/admin/all-employees/employees.table";
+import PageButton from "@/components/admin/all-employees/page-button";
+import PageNumber from "@/components/admin/all-employees/page-number";
+import Dropdown from "@/components/admin/all-employees/dropdown";
 
 const AllEmployeesPage:FC = () => {
     return (
@@ -30,9 +33,12 @@ const AllEmployeesPage:FC = () => {
                   Announcements
               </div>
               <EmployeesTable/>
-              <div className={"border border-[#E0E0E0] border-t-3 mt-2.5"}></div>
-
-
+              <div className={"border border-[#E0E0E0] border-t-3 mt-2.5 mb-2"}></div>
+              <div className={"flex flex-row justify-end pb-2.5"}>
+                  <PageButton/>
+                  <PageNumber/>
+                  <Dropdown/>
+              </div>
           </div>
       </>
     );
