@@ -32,7 +32,7 @@ const LeaveStats: FC<Props> = ({ data, error }) => {
             value={leaveTaken ? leaveTaken.length.toString() : "0"}
             label={"Leave taken"}
           />
-          <LeaveStatsItems value={"16 Days"} label={"Upcoming leave"} />
+          <LeaveStatsItems value={"0 Days"} label={"Upcoming leave"} />
           <LeaveStatsItems
             value={pendingRequest ? pendingRequest.length.toString() : "0"}
             label={"Pending request"}
