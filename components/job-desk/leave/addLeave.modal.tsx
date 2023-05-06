@@ -1,10 +1,11 @@
 import React, { Dispatch, FC, SetStateAction } from "react";
-import { LeavesLeaveTypeOptions } from "@/types";
+import { LeavesLeaveTypeOptions, LeavesStatusOptions } from "@/types";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import { Button } from "@/components/common";
 import toast from "react-hot-toast";
 import { pocketBase } from "@/utils";
+import FormData from "form-data";
 
 const leaveTypeOptions: {
   label: string;
@@ -38,15 +39,17 @@ interface Props {
 
 interface Input {
   leaveType: LeavesLeaveTypeOptions;
-  leaveDate: string;
+  leaveDate: Date;
+  attachment: FileList;
 }
 
 const AddLeaveModal: FC<Props> = ({ closeModal }) => {
-  const { register, handleSubmit } = useForm<Input>();
+  const { register, handleSubmit, resetField } = useForm<Input>();
 
   const handleAddLeave: SubmitHandler<Input> = async ({
     leaveType,
     leaveDate,
+    attachment,
   }) => {
     try {
       // check if user is logged in
@@ -55,18 +58,24 @@ const AddLeaveModal: FC<Props> = ({ closeModal }) => {
         return;
       }
 
-      // const data: LeavesRecord = {
-      //   user: pocketBase.authStore.model?.id,
-      //   leave_date: leaveDate,
-      //   leave_type: leaveType,
-      //   status: LeavesStatusOptions.pending,
-      //   attachments: [],
-      // };
+      const formData = new FormData();
 
-      await pocketBase.collection("leaves").create({
-        user: pocketBase.authStore.model?.id,
-      });
+      formData.append("user", pocketBase.authStore.model?.id);
+      formData.append("leave_date", new Date(leaveDate).toUTCString());
+      formData.append("leave_type", leaveType);
+      formData.append("status", LeavesStatusOptions.pending);
+      formData.append("attachment", attachment[0]);
+
+      await pocketBase.collection("leaves").create(formData);
+
+      toast.success("Leave request has been sent");
+      closeModal(false);
+
+      resetField("leaveType");
+      resetField("leaveDate");
+      resetField("attachment");
     } catch (err: any) {
+      console.log(err.data);
       toast.error(err.data.message);
     }
   };
@@ -117,8 +126,11 @@ const AddLeaveModal: FC<Props> = ({ closeModal }) => {
           </div>
 
           <div className={"flex w-80 flex-col gap-2"}>
-            <label>Leave Type</label>
-            <input type={"file"} />
+            <label htmlFor={"attachment"}>Attachment</label>
+            <input
+              {...register("attachment", { required: true })}
+              type={"file"}
+            />
           </div>
           <div className={"flex flex-row gap-3.5"}>
             <Button color={"black"}>Save</Button>

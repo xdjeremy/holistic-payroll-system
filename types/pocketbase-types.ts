@@ -3,9 +3,9 @@
  */
 
 export enum Collections {
-    Attendances = "attendances",
-    Leaves = "leaves",
-    Users = "users",
+	Attendances = "attendances",
+	Leaves = "leaves",
+	Users = "users",
 }
 
 // Alias types for improved usability
@@ -50,7 +50,6 @@ export enum LeavesStatusOptions {
   "paid" = "paid",
   "pending" = "pending",
 }
-
 export type LeavesRecord = {
   user: RecordIdString;
   leave_type: LeavesLeaveTypeOptions;
