@@ -30,7 +30,12 @@ const EmployeesTable = () => {
         </tr>
       </thead>
       <tbody>
-      <EmployeesTableItems/>
+      <EmployeesTableItems name={'Jeremy Neigh'} id={'A0B1C028'} status={'Part-time'} dept={'Support'} shift={'8h-17h'} date={'9/23/16'} role={'Tax officer'}/>
+      <EmployeesTableItems name={'Annette Black'} id={'A0B1C086'} status={'On-contract'} dept={'QA'} shift={'8h-13h'} date={'7/27/13'} role={'Branch Manager'}/>
+      <EmployeesTableItems name={'Theresa Webb'} id={'A0B1C025'} status={'Seasonal'} dept={'People Ops'} shift={'13h-22h'} date={'11/7/16'} role={'Regional Manager'}/>
+      <EmployeesTableItems name={'Kathryn Murphy'} id={'A0B1C044'} status={'Part-time'} dept={'IT'} shift={'17h-22h'} date={'6/19/14'} role={'Trust Administrator'}/>
+      <EmployeesTableItems name={'Courtney Henry'} id={'A0B1C099'} status={'Full-time'} dept={'Customer Success'} shift={'8h-17h'} date={'7/11/19'} role={'Vice President'}/>
+      <EmployeesTableItems name={'Jane Cooper'} id={'A0B1C095'} status={'Full-time'} dept={'Product'} shift={'8h-17h'} date={'8/2/19'} role={'Trust Office'}/>
       </tbody>
     </table>
   );

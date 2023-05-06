@@ -30,6 +30,8 @@ const AllEmployeesPage:FC = () => {
                   Announcements
               </div>
               <EmployeesTable/>
+              <div className={"border border-[#E0E0E0] border-t-3 mt-2.5"}></div>
+
 
           </div>
       </>
