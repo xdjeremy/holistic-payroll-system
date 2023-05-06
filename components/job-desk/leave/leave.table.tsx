@@ -1,24 +1,15 @@
 import React, { FC } from "react";
 import LeaveTableItem from "@/components/job-desk/leave/leaveTable.item";
-import useSWR from "swr";
-import { pocketBase } from "@/utils";
 import { LeavesResponse } from "@/types";
 import LeaveTableLoading from "@/components/job-desk/leave/leaveTable.loading";
+import { ListResult } from "pocketbase";
 
-const fetcher = async (page: number, perPage: number) => {
-  try {
-    return await pocketBase
-      .collection("leaves")
-      .getList<LeavesResponse>(page, perPage, {
-        sort: "-created",
-      });
-  } catch (err: any) {
-    throw new Error(err.data.message);
-  }
-};
-const LeaveTable: FC = () => {
-  const { data, error } = useSWR([1, 10], fetcher);
+interface Props {
+  data: ListResult<LeavesResponse> | undefined;
+  error: any;
+}
 
+const LeaveTable: FC<Props> = ({ data, error }) => {
   return (
     <table className={"w-full"}>
       <thead>
