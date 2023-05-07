@@ -27,6 +27,7 @@ const LoginForm: FC = () => {
       // save to cookie
       document.cookie = pocketBase.authStore.exportToCookie({
         httpOnly: false,
+        path: "/",
       });
 
       toast.success("Login Success");

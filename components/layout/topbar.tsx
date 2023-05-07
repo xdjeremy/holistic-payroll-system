@@ -3,6 +3,7 @@ import Logo from "../../assets/images/holistic_logo.png";
 import Image from "next/image";
 import { Bars3Icon } from "@heroicons/react/20/solid";
 import { BellIcon, GlobeAltIcon } from "@heroicons/react/24/outline";
+import ProfileDropDown from "@/components/layout/profile.dropdown";
 
 interface Props {
   sidebarOpen: boolean;
@@ -35,7 +36,7 @@ const TopBar: FC<Props> = ({ sidebarOpen, setSidebarOpen }) => {
           <span className={"font-medium"}>EN</span>
         </span>
         <BellIcon className={"h-6 w-6"} />
-        {/*  todo: add user icon  */}
+        <ProfileDropDown />
       </div>
     </div>
   );
