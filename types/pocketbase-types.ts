@@ -24,11 +24,11 @@ export type BaseSystemFields<T = never> = {
 };
 
 export type AuthSystemFields<T = never> = {
-    email: string
-    emailVisibility: boolean
-    username: string
-    verified: boolean
-} & BaseSystemFields<T>
+  email: string;
+  emailVisibility: boolean;
+  username: string;
+  verified: boolean;
+} & BaseSystemFields<T>;
 
 // Record types for each collection
 
@@ -69,14 +69,13 @@ export enum UsersStatusOptions {
   "seasonal" = "seasonal",
   "full-time" = "full-time",
 }
+
 export type UsersRecord = {
   name?: string;
   privilege: UsersPrivilegeOptions;
   salary: number;
   status: UsersStatusOptions;
   role: string;
-  shift_start: IsoDateString;
-  shift_end: IsoDateString;
   department: string;
 };
 

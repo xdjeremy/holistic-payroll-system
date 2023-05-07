@@ -11,6 +11,7 @@ import useSWR from "swr";
 import { pocketBase } from "@/utils";
 import { UsersResponse } from "@/types";
 import { ListResult } from "pocketbase";
+import AddEmployeeModal from "@/components/admin/all-employees/add.employee.modal";
 
 export const EmployeeContext = createContext({
   page: 1,
@@ -41,10 +42,21 @@ const AllEmployeesPage: FC = () => {
   const [page, setPage] = useState<number>(1);
   const [searchQuery, setSearchQuery] = useState<string>("");
 
+  const [showModal, setShowModal] = useState<boolean>(true);
+
   const { data, error } = useSWR([page, perPage, searchQuery], getUsers);
 
   return (
     <>
+      {showModal && (
+        <div
+          className={
+            "absolute left-0 top-0 z-10 h-screen w-full bg-black bg-opacity-50"
+          }
+        >
+          <AddEmployeeModal setShowModal={setShowModal} />
+        </div>
+      )}
       <EmployeeContext.Provider
         value={{
           page,

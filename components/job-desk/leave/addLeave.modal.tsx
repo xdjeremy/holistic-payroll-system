@@ -75,7 +75,6 @@ const AddLeaveModal: FC<Props> = ({ closeModal }) => {
       resetField("leaveDate");
       resetField("attachment");
     } catch (err: any) {
-      console.log(err.data);
       toast.error(err.data.message);
     }
   };
