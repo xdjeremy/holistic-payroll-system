@@ -24,11 +24,11 @@ export type BaseSystemFields<T = never> = {
 };
 
 export type AuthSystemFields<T = never> = {
-  email: string;
-  emailVisibility: boolean;
-  username: string;
-  verified: boolean;
-} & BaseSystemFields<T>;
+    email: string
+    emailVisibility: boolean
+    username: string
+    verified: boolean
+} & BaseSystemFields<T>
 
 // Record types for each collection
 
@@ -63,9 +63,21 @@ export enum UsersPrivilegeOptions {
   "admin" = "admin",
 }
 
+export enum UsersStatusOptions {
+  "part-time" = "part-time",
+  "on-contract" = "on-contract",
+  "seasonal" = "seasonal",
+  "full-time" = "full-time",
+}
 export type UsersRecord = {
   name?: string;
   privilege: UsersPrivilegeOptions;
+  salary: number;
+  status: UsersStatusOptions;
+  role: string;
+  shift_start: IsoDateString;
+  shift_end: IsoDateString;
+  department: string;
 };
 
 // Response types include system fields and match responses from the PocketBase API
