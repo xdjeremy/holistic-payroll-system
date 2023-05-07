@@ -3,8 +3,20 @@ import { Layout } from "@/components/layout";
 import AllEmployeesPage from "@/components/admin/all-employees/all-employees.page";
 import { initPocketBase } from "@/utils";
 import { UsersPrivilegeOptions, UsersResponse } from "@/types";
+import { useUser } from "@/context";
+import { useEffectOnce } from "usehooks-ts";
 
-const AllEmployees: NextPage = () => {
+interface Props {
+  user: string;
+}
+
+const AllEmployees: NextPage<Props> = ({ user }) => {
+  const { setUser } = useUser();
+
+  useEffectOnce(() => {
+    setUser(JSON.parse(user));
+  });
+
   return (
     <Layout title={"All Employees"}>
       <AllEmployeesPage />

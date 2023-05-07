@@ -11,7 +11,7 @@ interface Props {
 
 const EmployeesTable: FC<Props> = ({ data, error }) => {
   return (
-    <table className={"w-full table-fixed"}>
+    <table className={"w-full table-auto"}>
       <thead>
         <tr>
           <th className={"border bg-[#F5F5F5] py-3 pl-3 text-left font-medium"}>
