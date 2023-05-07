@@ -19,14 +19,18 @@ export const EmployeeContext = createContext({
   setPerPage: (_perPage: number) => {},
   data: {} as ListResult<UsersResponse> | undefined,
   error: undefined as any,
+  searchQuery: "",
+  setSearchQuery: (_searchQuery: string) => {},
 });
 const getUsers = async (params: any) => {
-  const [page, perPage] = params;
+  const [page, perPage, searchQuery] = params;
+
   try {
     return await pocketBase
       .collection("users")
       .getList<UsersResponse>(page, perPage, {
         sort: "-created",
+        filter: `name ~ "${searchQuery}" || email ~ "${searchQuery}" || role ~ "${searchQuery}" || department ~ "${searchQuery}"`,
       });
   } catch (err: any) {
     throw new Error(err.data.message);
@@ -35,8 +39,9 @@ const getUsers = async (params: any) => {
 const AllEmployeesPage: FC = () => {
   const [perPage, setPerPage] = useState<number>(10);
   const [page, setPage] = useState<number>(1);
+  const [searchQuery, setSearchQuery] = useState<string>("");
 
-  const { data, error } = useSWR([page, perPage], getUsers);
+  const { data, error } = useSWR([page, perPage, searchQuery], getUsers);
 
   return (
     <>
@@ -48,6 +53,8 @@ const AllEmployeesPage: FC = () => {
           setPerPage,
           data,
           error,
+          searchQuery,
+          setSearchQuery,
         }}
       >
         <PageTitle title={"All Employee"}>
