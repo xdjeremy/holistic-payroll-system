@@ -2,6 +2,7 @@ import React, { FC } from "react";
 import EmployeesTableItems from "@/components/admin/all-employees/employees.table.items";
 import { ListResult } from "pocketbase";
 import { UsersResponse } from "@/types";
+import EmployeesTableLoading from "@/components/admin/all-employees/employees.table.loading";
 
 interface Props {
   data: ListResult<UsersResponse> | undefined;
@@ -37,10 +38,9 @@ const EmployeesTable: FC<Props> = ({ data, error }) => {
         </tr>
       </thead>
       <tbody>
-        {
-          // todo: add loading state
-          !data && !error && <></>
-        }
+        {!data &&
+          !error &&
+          [1, 2, 3, 4, 5].map((i) => <EmployeesTableLoading key={i} />)}
 
         {data &&
           data.items.map((item) => (
