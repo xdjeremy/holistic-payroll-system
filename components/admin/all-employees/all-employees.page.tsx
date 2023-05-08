@@ -42,7 +42,7 @@ const AllEmployeesPage: FC = () => {
   const [page, setPage] = useState<number>(1);
   const [searchQuery, setSearchQuery] = useState<string>("");
 
-  const [showModal, setShowModal] = useState<boolean>(true);
+  const [showModal, setShowModal] = useState<boolean>(false);
 
   const { data, error } = useSWR([page, perPage, searchQuery], getUsers);
 
