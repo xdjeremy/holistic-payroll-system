@@ -1,9 +1,10 @@
 import React, { FC, useContext } from "react";
 import { DailyLogContext } from "@/components/admin/dailylog/dailylog.page";
 import DailyLogTableItem from "@/components/admin/dailylog/dailylog.table.item";
+import DailyLogTableLoading from "@/components/admin/dailylog/dailylog.table.loading";
 
 const DailyLogTable: FC = () => {
-  const { data } = useContext(DailyLogContext);
+  const { data, error } = useContext(DailyLogContext);
 
   return (
     <table className={"w-full table-auto"}>
@@ -24,9 +25,9 @@ const DailyLogTable: FC = () => {
         </tr>
       </thead>
       <tbody>
-        {/*{!data &&*/}
-        {/*    !error &&*/}
-        {/*    [1, 2, 3, 4, 5].map((i) => <EmployeesTableLoading key={i} />)}*/}
+        {!data &&
+          !error &&
+          [1, 2, 3, 4, 5].map((i) => <DailyLogTableLoading key={i} />)}
 
         {data &&
           data.items.map((item) => (

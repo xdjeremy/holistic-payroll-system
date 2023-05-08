@@ -7,6 +7,7 @@ import { AttendancesResponse, UsersResponse } from "@/types";
 import useSWR from "swr";
 import { ListResult } from "pocketbase";
 import { any } from "prop-types";
+import Pagination from "@/components/common/pagination";
 
 type TExpand = {
   user: UsersResponse;
@@ -27,7 +28,7 @@ const fetcher = async (params: any) => {
     return pocketBase
       .collection("attendances")
       .getList<AttendancesResponse<TExpand>>(page, perPage, {
-        filter: `user.username ~ '${query}'`,
+        filter: `user.name ~ '${query}'`,
         expand: "user",
         sort: "-created",
       });
@@ -62,6 +63,10 @@ const DailyLogPage: FC = () => {
           <DailyLogSearchBar />
           <div className={"mt-6"}>
             <DailyLogTable />
+            <div
+              className={"border-t-3 mb-2 mt-2.5 border border-[#E0E0E0]"}
+            ></div>
+            <Pagination context={DailyLogContext} />
           </div>
         </div>
       </DailyLogContext.Provider>
