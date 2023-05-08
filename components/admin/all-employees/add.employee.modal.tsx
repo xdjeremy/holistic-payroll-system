@@ -1,11 +1,12 @@
 import React, { Dispatch, FC, SetStateAction } from "react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import { Button, Input } from "@/components/common";
-import { useForm } from "react-hook-form";
+import { SubmitHandler, useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { NewAccountValidation } from "@/utils/validations";
-import { UsersStatusOptions } from "@/types";
+import { UsersPrivilegeOptions, UsersStatusOptions } from "@/types";
 import GeneratePasswordInput from "@/components/admin/all-employees/generate.password.input";
+import { pocketBase } from "@/utils";
 
 interface Props {
   setShowModal: Dispatch<SetStateAction<boolean>>;
@@ -26,6 +27,7 @@ interface FormValues {
   role: string;
   status: string;
   department: string;
+  password: string;
 }
 
 const AddEmployeeModal: FC<Props> = ({ setShowModal }) => {
@@ -34,11 +36,44 @@ const AddEmployeeModal: FC<Props> = ({ setShowModal }) => {
     handleSubmit,
     formState: { errors },
     setValue,
+    setError,
   } = useForm<FormValues>();
 
-  const handleAddEmployee = () => {
+  const handleAddEmployee: SubmitHandler<FormValues> = async ({
+    name,
+    username,
+    email,
+    salary,
+    role,
+    status,
+    department,
+    password,
+  }) => {
     try {
+      await pocketBase.collection("users").create({
+        name,
+        username,
+        email,
+        salary,
+        role,
+        status,
+        department,
+        password,
+        passwordConfirm: password,
+        privilege: UsersPrivilegeOptions.user,
+      });
+
+      toast.success("Employee added successfully");
+      setShowModal(false);
     } catch (err: any) {
+      const obj = Object.keys(err.data.data);
+      obj.map((key) => {
+        console.log(key);
+        setError(key as any, {
+          type: "manual",
+          message: err.data.data[key].message,
+        });
+      });
       toast.error(err.data.message);
     }
   };
@@ -118,9 +153,16 @@ const AddEmployeeModal: FC<Props> = ({ setShowModal }) => {
             </select>
           </div>
 
-          <GeneratePasswordInput register={register} setValue={setValue} />
+          <Input
+            name={"department"}
+            label={"Department"}
+            register={register}
+            validation={NewAccountValidation.department}
+            type={"text"}
+            error={errors.department?.message}
+          />
 
-          {/* todo: generate random password */}
+          <GeneratePasswordInput register={register} setValue={setValue} />
 
           <div className={"flex flex-row gap-3.5"}>
             <Button color={"black"}>Save</Button>
