@@ -1,18 +1,15 @@
-import React, { FC, useContext } from "react";
+import React, { FC } from "react";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
-import { EmployeeContext } from "@/components/admin/all-employees/all-employees.page";
 
-const SearchBar: FC = () => {
-  const { searchQuery, setSearchQuery } = useContext(EmployeeContext);
-
+const DailyLogSearchBar: FC = () => {
   return (
     <div className={"relative"}>
       <label htmlFor={"search"} className={"absolute left-4 top-3"}>
         <MagnifyingGlassIcon className={"h-5 w-5"} />
       </label>
       <input
-        value={searchQuery}
-        onChange={(e) => setSearchQuery(e.target.value)}
+        // value={searchQuery}
+        // onChange={(e) => setSearchQuery(e.target.value)}
         type="text"
         id={"search"}
         name="search"
@@ -23,4 +20,4 @@ const SearchBar: FC = () => {
   );
 };
 
-export default SearchBar;
+export default DailyLogSearchBar;
