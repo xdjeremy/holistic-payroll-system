@@ -15,6 +15,7 @@ const PageDropDown: FC<Props> = ({ context }) => {
     <select
       onChange={handleChange}
       className={"h-8 w-14 rounded-lg border border-[#E0E0E0] bg-white"}
+      defaultValue={10}
     >
       <option value="1">1</option>
       <option value="2">2</option>
