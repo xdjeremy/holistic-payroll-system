@@ -16,7 +16,7 @@ const DropDownItems: IDropDown[] = [
   {
     icon: <ArrowRightOnRectangleIcon className={"h-5 w-5"} />,
     text: "Logout",
-    href: "logout",
+    href: "/logout",
   },
 ];
 

@@ -63,9 +63,20 @@ export enum UsersPrivilegeOptions {
   "admin" = "admin",
 }
 
+export enum UsersStatusOptions {
+  "part-time" = "part-time",
+  "on-contract" = "on-contract",
+  "seasonal" = "seasonal",
+  "full-time" = "full-time",
+}
+
 export type UsersRecord = {
   name?: string;
   privilege: UsersPrivilegeOptions;
+  salary: number;
+  status: UsersStatusOptions;
+  role: string;
+  department: string;
 };
 
 // Response types include system fields and match responses from the PocketBase API
