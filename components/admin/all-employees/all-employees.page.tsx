@@ -71,7 +71,7 @@ const AllEmployeesPage: FC = () => {
       >
         <PageTitle title={"All Employee"}>
           <div className={"flex flex-row px-3"}>
-            <Button color={"black"}>
+            <Button onClick={() => setShowModal(true)} color={"black"}>
               <PlusIcon className={"mr-2 h-5 w-5"} />
               <span>Add Employee</span>
             </Button>
