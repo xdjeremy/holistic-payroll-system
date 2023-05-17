@@ -1,18 +1,12 @@
-import React, { FC, useState } from "react";
+import React, { FC, useContext, useState } from "react";
 import TableLeaveItems from "@/components/admin/leave-request/table-leave-items";
-import { ListResult } from "pocketbase";
-import { LeavesResponse, UsersResponse } from "@/types";
+import { LeavesResponse } from "@/types";
+import { LeaveRequestContext } from "@/components/admin/leave-request/leave.request.page";
+import TableLeaveLoading from "@/components/admin/leave-request/table-leave.loading";
 
-type TExpand = {
-  user: UsersResponse;
-};
+const TableLeave: FC = () => {
+  const { data, error } = useContext(LeaveRequestContext);
 
-interface Props {
-  data: ListResult<LeavesResponse<TExpand>> | undefined;
-  error: any;
-}
-
-const TableLeave: FC<Props> = ({ data, error }) => {
   const [openAction, setOpenAction] = useState<
     LeavesResponse["id"] | undefined
   >(undefined);
@@ -42,6 +36,7 @@ const TableLeave: FC<Props> = ({ data, error }) => {
         </tr>
       </thead>
       <tbody>
+        {!data && !error && <TableLeaveLoading />}
         {data &&
           !error &&
           data.items.map((data) => (
@@ -52,10 +47,6 @@ const TableLeave: FC<Props> = ({ data, error }) => {
               setOpenAction={setOpenAction}
             />
           ))}
-        {/*<TableLeaveItems profile={"Theresa Webb"} time={"11/7/16"} duration={"10h 25m"} type={"Marketing"} attachment={"McKeeDebit01.pdf"} stat={"Ready"} action={""}/>*/}
-        {/*<TableLeaveItems profile={"Kathryn Murphy"} time={"6/19/14"} duration={"16h 55m"} type={"Support"} attachment={"dealsheet2020.pdf"} stat={"Busy"} action={""}/>*/}
-        {/*<TableLeaveItems profile={"Courtney Henry"} time={"7/11/19"} duration={"15h 45m"} type={"Operations"} attachment={"debitnote_march.pdf"} stat={"Ready"} action={""}/>*/}
-        {/*<TableLeaveItems profile={"Jane Cooper"} time={"8/2/19"} duration={"10h 45m"} type={"HR"} attachment={"dealsheet_march.xlsx"} stat={"Busy"} action={""}/>*/}
       </tbody>
     </table>
   );

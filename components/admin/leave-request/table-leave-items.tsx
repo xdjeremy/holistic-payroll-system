@@ -18,6 +18,7 @@ const TableLeaveItems: FC<Props> = ({ data, openAction, setOpenAction }) => {
     <>
       <tr>
         <td className={"flex flex-row items-center gap-2 p-3"}>
+          {/* todo: add user image */}
           <div className={"h-9 w-9 rounded-full bg-black"}></div>
           <div className={"text-sm font-normal text-black"}>
             {data.expand?.user && data.expand?.user.name}
