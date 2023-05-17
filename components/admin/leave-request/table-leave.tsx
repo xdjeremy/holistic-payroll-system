@@ -12,7 +12,7 @@ const TableLeave: FC = () => {
   >(undefined);
 
   return (
-    <table className={"w-full table-auto"}>
+    <table className={"w-full table-fixed"}>
       <thead>
         <tr>
           <th className={"border bg-[#F5F5F5] py-3 pl-3 text-left font-medium"}>
