@@ -36,7 +36,9 @@ const TableLeave: FC = () => {
         </tr>
       </thead>
       <tbody>
-        {!data && !error && <TableLeaveLoading />}
+        {!data &&
+          !error &&
+          [1, 2, 3, 4, 5].map((index) => <TableLeaveLoading key={index} />)}
         {data &&
           !error &&
           data.items.map((data) => (

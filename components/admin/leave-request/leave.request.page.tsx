@@ -43,67 +43,43 @@ const fetcher = async (query: any) => {
 const LeaveRequestPage: FC = () => {
   const [page, setPage] = useState<number>(1);
   const [perPage, setPerPage] = useState<number>(10);
-    const [searchQuery, setSearchQuery] = useState<string>("");
-    const { data, error, mutate } = useSWR(
-      [page, perPage, searchQuery],
-      fetcher
-    );
+  const [searchQuery, setSearchQuery] = useState<string>("");
+  const { data, error, mutate } = useSWR([page, perPage, searchQuery], fetcher);
 
-    return (
-      <>
-        <LeaveRequestContext.Provider
-          value={{
-            data,
-            error,
-            page,
-            perPage,
-            setPage,
-            setPerPage,
-            searchQuery,
-            setSearchQuery,
-            mutate,
-          }}
-        >
-          <PageTitle title={"Leave Request"}>
-            <></>
-          </PageTitle>
-          <div className={"justify-between rounded-md bg-white px-8 pt-4"}>
-            <div className={"flex flex-col gap-5 pb-10 lg:flex-row"}>
-              <div className={"w-full"}>
-                <button
-                  className={"rounded-l-lg border border-[#C2C2C2] px-4 py-1.5"}
-                >
-                  Apply Between
-                </button>
-                <button className={" border border-[#C2C2C2] px-4 py-1.5"}>
-                  Department
-                </button>
-                <button className={"border border-[#C2C2C2] px-4 py-1.5"}>
-                  Work shift
-                </button>
-                <button className={"border border-[#C2C2C2] px-4 py-1.5"}>
-                  Rejected
-                </button>
-                <button
-                  className={"rounded-r-lg border border-[#C2C2C2] px-4 py-1.5"}
-                >
-                  Duration
-                </button>
-              </div>
-              <SearchBarLeave />
-            </div>
-            <div className={"relative overflow-auto"}>
-              <TableLeave />
-            </div>
-
-            <div
-              className={"border-t-3 mb-2 mt-2.5 border border-[#E0E0E0]"}
-            ></div>
-            <Pagination context={LeaveRequestContext} />
+  return (
+    <>
+      <LeaveRequestContext.Provider
+        value={{
+          data,
+          error,
+          page,
+          perPage,
+          setPage,
+          setPerPage,
+          searchQuery,
+          setSearchQuery,
+          mutate,
+        }}
+      >
+        <PageTitle title={"Leave Request"}>
+          <></>
+        </PageTitle>
+        <div className={"justify-between rounded-md bg-white px-8 pt-4"}>
+          <div className={"flex flex-col items-start gap-5 pb-10 lg:items-end"}>
+            <SearchBarLeave />
           </div>
-        </LeaveRequestContext.Provider>
-      </>
-    );
+          <div className={"relative overflow-auto"}>
+            <TableLeave />
+          </div>
+
+          <div
+            className={"border-t-3 mb-2 mt-2.5 border border-[#E0E0E0]"}
+          ></div>
+          <Pagination context={LeaveRequestContext} />
+        </div>
+      </LeaveRequestContext.Provider>
+    </>
+  );
 };
 
 export default LeaveRequestPage;
