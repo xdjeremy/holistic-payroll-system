@@ -1,10 +1,13 @@
-import React, { FC } from "react";
+import React, { FC, useContext } from "react";
 import { EllipsisVerticalIcon } from "@heroicons/react/20/solid";
-import { LeavesResponse, UsersResponse } from "@/types";
+import { LeavesResponse, LeavesStatusOptions, UsersResponse } from "@/types";
 import { format } from "date-fns";
 import { createAvatar } from "@dicebear/core";
 import { initials } from "@dicebear/collection";
 import Image from "next/image";
+import toast from "react-hot-toast";
+import { pocketBase } from "@/utils";
+import { LeaveRequestContext } from "@/components/admin/leave-request/leave.request.page";
 
 type TExpand = {
   user: UsersResponse;
@@ -20,6 +23,22 @@ const TableLeaveItems: FC<Props> = ({ data, openAction, setOpenAction }) => {
   const avatar = createAvatar(initials, {
     seed: data.expand?.user.name,
   }).toDataUriSync();
+
+  const { mutate } = useContext(LeaveRequestContext);
+
+  const handleAction = async (action: LeavesStatusOptions) => {
+    try {
+      await pocketBase.collection("leaves").update(data.id, {
+        status: action,
+      });
+
+      setOpenAction(undefined);
+      toast.success("Leave request has been updated");
+      mutate();
+    } catch (err: any) {
+      toast.error(err.data.message);
+    }
+  };
 
   return (
     <>
@@ -51,8 +70,18 @@ const TableLeaveItems: FC<Props> = ({ data, openAction, setOpenAction }) => {
                   "absolute right-2/3 top-0 z-10 flex w-[238px] flex-col bg-white text-black drop-shadow-lg"
                 }
               >
-                <button className={"px-3.5 py-2 text-left"}>Approve</button>
-                <button className={"px-3.5 py-2 text-left"}>Reject</button>
+                <button
+                  onClick={() => handleAction(LeavesStatusOptions.paid)}
+                  className={"px-3.5 py-2 text-left hover:bg-[#f5f5f5]"}
+                >
+                  Approve
+                </button>
+                <button
+                  onClick={() => handleAction(LeavesStatusOptions.rejected)}
+                  className={"px-3.5 py-2 text-left hover:bg-[#f5f5f5]"}
+                >
+                  Reject
+                </button>
               </div>
             )}
             <EllipsisVerticalIcon

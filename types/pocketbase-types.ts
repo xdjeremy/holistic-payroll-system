@@ -24,11 +24,11 @@ export type BaseSystemFields<T = never> = {
 };
 
 export type AuthSystemFields<T = never> = {
-    email: string
-    emailVisibility: boolean
-    username: string
-    verified: boolean
-} & BaseSystemFields<T>
+  email: string;
+  emailVisibility: boolean;
+  username: string;
+  verified: boolean;
+} & BaseSystemFields<T>;
 
 // Record types for each collection
 
@@ -49,6 +49,7 @@ export enum LeavesLeaveTypeOptions {
 export enum LeavesStatusOptions {
   "paid" = "paid",
   "pending" = "pending",
+  "rejected" = "rejected",
 }
 export type LeavesRecord = {
   user: RecordIdString;
