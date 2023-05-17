@@ -9,6 +9,7 @@ import AllowanceCard from "@/components/job-desk/allowance/allowance.card";
 import LeaveCard from "@/components/job-desk/leave/leave.card";
 import AddLeaveModal from "@/components/job-desk/leave/addLeave.modal";
 import FolderCard from "@/components/job-desk/folder/folder.card";
+import SalaryCard from "@/components/job-desk/salary/salary.card";
 
 const JobDeskPage = () => {
   const [activeTab, setActiveTab] = useState<JobDeskPageTabs>(
@@ -27,6 +28,8 @@ const JobDeskPage = () => {
         return <LeaveCard />;
       case JobDeskPageTabs.FOLDER:
         return <FolderCard />;
+      case JobDeskPageTabs.SALARY:
+        return <SalaryCard />;
     }
   };
 

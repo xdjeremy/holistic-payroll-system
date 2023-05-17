@@ -11,7 +11,7 @@ const UserProfileItem: FC = () => {
   }).toDataUriSync();
 
   return (
-    <div className={"flex flex-row items-center w-full gap-3"}>
+    <div className={"flex w-full flex-row items-center gap-3"}>
       <Image
         className={"rounded-full"}
         width={50}
@@ -21,7 +21,9 @@ const UserProfileItem: FC = () => {
       />
       <div className={"flex flex-col"}>
         <span className={"text-sm font-bold text-[#404040]"}>{user?.name}</span>
-        <span className={"text-xs text-[#9E9E9E]"}>Employee</span>
+        <span className={"text-xs capitalize text-[#9E9E9E]"}>
+          {user?.privilege}
+        </span>
       </div>
     </div>
   );
