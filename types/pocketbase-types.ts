@@ -49,6 +49,7 @@ export enum LeavesLeaveTypeOptions {
 export enum LeavesStatusOptions {
   "paid" = "paid",
   "pending" = "pending",
+  "rejected" = "rejected",
 }
 export type LeavesRecord = {
   user: RecordIdString;
