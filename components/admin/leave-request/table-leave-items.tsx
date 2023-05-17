@@ -1,57 +1,57 @@
-import React, {FC, useState} from 'react';
-import {EllipsisVerticalIcon} from "@heroicons/react/20/solid";
+import React, { FC } from "react";
+import { EllipsisVerticalIcon } from "@heroicons/react/20/solid";
+import { LeavesResponse, UsersResponse } from "@/types";
+import { format } from "date-fns";
+
+type TExpand = {
+  user: UsersResponse;
+};
 
 interface Props {
-    profile: string;
-    time: string;
-    duration: string;
-    type: string;
-    attachment: string;
-    stat: string;
-    action: any;
+  data: LeavesResponse<TExpand>;
+  openAction: LeavesResponse["id"] | undefined;
+  setOpenAction: (id: LeavesResponse["id"] | undefined) => void;
 }
-const TableLeaveItems: FC<Props> = ({profile, time, duration, type, attachment, stat, action}) => {
-    const [openAction, setOpenAction] = useState(false)
-    return (
-      <>
-        <tr>
-          <td className={"flex flex-row items-center gap-2 p-3"}>
-            <div className={"h-9 w-9 rounded-full bg-black"}></div>
-            <div className={"text-sm font-normal text-black"}>{profile}</div>
-          </td>
-          <td className={"gap-2 p-3"}>{time}</td>
-          <td className={"gap-2 p-3"}>
-            <div>{duration}</div>
-          </td>
-          <td className={"gap-2 p-3"}>{type}</td>
-          <td className={"gap-2 p-3"}>{attachment}</td>
-          <td className={"gap-2 p-3"}>{stat}</td>
-          <td className={"gap-2 p-3"}>
-            {action}
-            <button className={"relative"}>
-                {
-                    openAction && (
-                        <div
-                            className={"absolute flex flex-col top-0 right-2/3 w-[238px] z-10 bg-white text-black drop-shadow-lg"}>
-                            <button className={"text-left px-3.5 py-2"}>
-                                Approve
-                            </button>
-                            <button className={"text-left px-3.5 py-2"}>
-                                Reject
-                            </button>
-                        </div>
 
-                    )
+const TableLeaveItems: FC<Props> = ({ data, openAction, setOpenAction }) => {
+  return (
+    <>
+      <tr>
+        <td className={"flex flex-row items-center gap-2 p-3"}>
+          <div className={"h-9 w-9 rounded-full bg-black"}></div>
+          <div className={"text-sm font-normal text-black"}>
+            {data.expand?.user && data.expand?.user.name}
+          </div>
+        </td>
+        <td className={"gap-2 p-3"}>
+          {format(new Date(data.leave_date), "d/MM/yy hh:mm:ss a")}
+        </td>
+        <td className={"gap-2 p-3"}>{data.leave_type}</td>
+        <td className={"gap-2 p-3"}>{data.attachment}</td>
+        <td className={"gap-2 p-3"}>{data.status}</td>
+        <td className={"gap-2 p-3"}>
+          <button className={"relative"}>
+            {openAction === data.id && (
+              <div
+                className={
+                  "absolute right-2/3 top-0 z-10 flex w-[238px] flex-col bg-white text-black drop-shadow-lg"
                 }
-              <EllipsisVerticalIcon
-                className={"h-8 w-8 flex-shrink-0"}
-                onClick={() => setOpenAction(!openAction)}
-              />
-            </button>
-          </td>
-        </tr>
-      </>
-    );
+              >
+                <button className={"px-3.5 py-2 text-left"}>Approve</button>
+                <button className={"px-3.5 py-2 text-left"}>Reject</button>
+              </div>
+            )}
+            <EllipsisVerticalIcon
+              className={"h-6 w-6 flex-shrink-0"}
+              onClick={() =>
+                setOpenAction(openAction !== data.id ? data.id : undefined)
+              }
+            />
+          </button>
+        </td>
+      </tr>
+    </>
+  );
 };
 
 export default TableLeaveItems;

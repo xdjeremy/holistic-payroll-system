@@ -24,11 +24,11 @@ export type BaseSystemFields<T = never> = {
 };
 
 export type AuthSystemFields<T = never> = {
-  email: string;
-  emailVisibility: boolean;
-  username: string;
-  verified: boolean;
-} & BaseSystemFields<T>;
+    email: string
+    emailVisibility: boolean
+    username: string
+    verified: boolean
+} & BaseSystemFields<T>
 
 // Record types for each collection
 
