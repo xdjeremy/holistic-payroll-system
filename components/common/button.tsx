@@ -17,8 +17,8 @@ const Button: FC<Props> = ({ children, onClick, disabled, color, type }) => {
       type={type}
       className={classNames(
         color === "black"
-          ? "bg-[#07070D] text-[#F5F5F5]"
-          : "border-bl07070D border bg-white text-black",
+          ? "bg-[#07070D] text-[#F5F5F5] hover:brightness-75"
+          : "border border-[#07070D] bg-white text-black hover:brightness-75",
         "flex flex-row items-center rounded-md  px-4 py-1.5 font-medium  disabled:cursor-not-allowed disabled:opacity-50"
       )}
     >

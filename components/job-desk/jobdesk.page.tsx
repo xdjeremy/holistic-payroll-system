@@ -8,7 +8,7 @@ import JobDeskLayout from "@/components/job-desk/jobdesk.layout";
 import LeaveCard from "@/components/job-desk/leave/leave.card";
 import AddLeaveModal from "@/components/job-desk/leave/addLeave.modal";
 import SalaryCard from "@/components/job-desk/salary/salary.card";
-import ProfileCard from "@/components/job-desk/profile.card";
+import ProfileCard from "@/components/job-desk/profile/profile.card";
 
 const JobDeskPage = () => {
   const [activeTab, setActiveTab] = useState<JobDeskPageTabs>(
