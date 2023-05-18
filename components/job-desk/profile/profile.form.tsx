@@ -22,12 +22,14 @@ const fetcher = async (): Promise<UsersResponse> => {
 export const ProfileContext = createContext({
   edit: undefined as keyof ProfileInput | undefined,
   setEdit: (_value: keyof ProfileInput | undefined) => {},
+  isLoading: false,
 });
 
 const ProfileForm: FC = () => {
   const { data, error } = useSWR<UsersResponse>("users", fetcher);
   const { setValue, handleSubmit, setError } = useFormContext<ProfileInput>();
   const [edit, setEdit] = useState<keyof ProfileInput | undefined>(undefined);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     if (data && !error) {
@@ -49,6 +51,7 @@ const ProfileForm: FC = () => {
     passwordConfirm,
   }) => {
     try {
+      setIsLoading(true);
       const user = pocketBase.authStore.model?.id;
       if (!user) {
         return toast.error("User not found");
@@ -72,6 +75,9 @@ const ProfileForm: FC = () => {
       }
 
       setEdit(undefined);
+      setValue("oldPassword", "");
+      setValue("password", "");
+      setValue("passwordConfirm", "");
       toast.success("Profile updated");
     } catch (err: any) {
       const obj = Object.keys(err.data.data);
@@ -81,6 +87,8 @@ const ProfileForm: FC = () => {
           message: err.data.data[key].message,
         });
       });
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -95,6 +103,7 @@ const ProfileForm: FC = () => {
       value={{
         edit,
         setEdit,
+        isLoading,
       }}
     >
       <form
@@ -154,12 +163,13 @@ const ProfileForm: FC = () => {
         </div>
 
         <div className={"mt-2 flex flex-row gap-3.5"}>
-          <Button type={"submit"} color={"black"}>
+          <Button type={"submit"} color={"black"} disabled={isLoading}>
             Save
           </Button>
           <button
             onClick={() => cancelHandler()}
             type={"button"}
+            disabled={isLoading}
             className={
               "flex flex-row items-center rounded-md bg-[#D3D3D9] px-4 py-1.5 font-medium text-[#07070D] hover:bg-[#D3D3D9]/50 disabled:cursor-not-allowed disabled:opacity-50"
             }

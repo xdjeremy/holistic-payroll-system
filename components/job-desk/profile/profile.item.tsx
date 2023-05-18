@@ -28,7 +28,7 @@ const ProfileItem: FC<Props> = ({
     getValues,
     formState: { errors },
   } = useFormContext<ProfileInput>();
-  const { edit, setEdit } = useContext(ProfileContext);
+  const { edit, setEdit, isLoading } = useContext(ProfileContext);
 
   const renderEdit = () =>
     edit === name || showInput ? (
@@ -39,6 +39,7 @@ const ProfileItem: FC<Props> = ({
           "rounded-lg border-2 border-[#B1CDF3] px-4 py-2 focus:outline-[#146ADC]"
         }
         placeholder={placeholder}
+        disabled={isLoading}
       />
     ) : (
       <span
