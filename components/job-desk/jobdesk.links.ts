@@ -1,21 +1,17 @@
 enum JobDeskPageTabs {
-  ALLOWANCE = "allowance",
   ATTENDANCE = "attendance",
   LEAVE = "leave",
-  FOLDER = "folder",
-  ASSETS = "assets",
-  HISTORY = "history",
   SALARY = "salary",
+  PAY_RUN = "pay-run",
+  PROFILE = "profile",
 }
 
 const JobDeskLinks: JobDeskPageTabs[] = [
-  JobDeskPageTabs.ALLOWANCE,
   JobDeskPageTabs.ATTENDANCE,
   JobDeskPageTabs.LEAVE,
-  JobDeskPageTabs.FOLDER,
-  JobDeskPageTabs.ASSETS,
-  JobDeskPageTabs.HISTORY,
   JobDeskPageTabs.SALARY,
+  JobDeskPageTabs.PAY_RUN,
+  JobDeskPageTabs.PROFILE,
 ];
 
 export { JobDeskPageTabs, JobDeskLinks };
