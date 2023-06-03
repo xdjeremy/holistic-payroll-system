@@ -11,7 +11,7 @@ const fetcher = async (table: string): Promise<LeavesResponse[]> => {
   }
 };
 const LeaveGrid: FC = () => {
-  const { data, error } = useSWR<LeavesResponse[]>("leaves", fetcher);
+  const { data } = useSWR<LeavesResponse[]>("leaves", fetcher);
 
   const leaveTaken = data?.filter((leave) => {
     return new Date(leave.leave_date) < new Date();

@@ -1,10 +1,5 @@
 import React, { createContext, FC, useState } from "react";
-import { Button, PageTitle } from "@/components/common";
-import {
-  ArrowRightOnRectangleIcon,
-  CalendarIcon,
-} from "@heroicons/react/24/outline";
-import LeaveDropdown from "@/components/admin/leave-summary/leave.dropdown";
+import { PageTitle } from "@/components/common";
 import LeaveGrid from "@/components/admin/leave-summary/leave.grid";
 import SummarySearchbar from "@/components/admin/leave-summary/summary-searchbar";
 import SummaryTable from "@/components/admin/leave-summary/summary-table";
@@ -65,21 +60,21 @@ const LeaveSummaryPage: FC = () => {
         }}
       >
         <PageTitle title={"Summary"}>
-          <div className={"flex flex-row px-3"}>
-            <Button color={"black"}>
-              <ArrowRightOnRectangleIcon className={"mr-2 h-5 w-5"} />
-              <span>Assign Leave</span>
-            </Button>
-          </div>
+          {/*<div className={"flex flex-row px-3"}>*/}
+          {/*  <Button color={"black"}>*/}
+          {/*    <ArrowRightOnRectangleIcon className={"mr-2 h-5 w-5"} />*/}
+          {/*    <span>Assign Leave</span>*/}
+          {/*  </Button>*/}
+          {/*</div>*/}
         </PageTitle>
         <div className={"rounded-md bg-white px-8 pt-4"}>
-          <div className={"flex flex-row justify-between pb-8"}>
-            <LeaveDropdown />
-            <Button color={"white"}>
-              <CalendarIcon className={"mr-2 h-5 w-5"} />
-              <span>Select Date</span>
-            </Button>
-          </div>
+          {/*<div className={"flex flex-row justify-between pb-8"}>*/}
+          {/*  <LeaveDropdown />*/}
+          {/*  <Button color={"white"}>*/}
+          {/*    <CalendarIcon className={"mr-2 h-5 w-5"} />*/}
+          {/*    <span>Select Date</span>*/}
+          {/*  </Button>*/}
+          {/*</div>*/}
           <LeaveGrid />
           <div className={"py-6"}>
             <SummarySearchbar />
