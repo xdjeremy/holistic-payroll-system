@@ -2,6 +2,7 @@ import { UserNavLinks } from "@/components/layout/userNavLinks";
 import {
   ArrowsRightLeftIcon,
   ClockIcon,
+  ListBulletIcon,
   UsersIcon,
 } from "@heroicons/react/24/outline";
 
@@ -20,6 +21,11 @@ const adminNavLinks: UserNavLinks[] = [
     icon: <ArrowsRightLeftIcon className={"h-5 w-5"} />,
     label: "Leave Request",
     href: "/admin/leave-request",
+  },
+  {
+    icon: <ListBulletIcon className={"h-5 w-5"} />,
+    label: "Leave Summary",
+    href: "/admin/leave-summary",
   },
 ];
 

@@ -1,9 +1,13 @@
-import React, { FC } from "react";
+import React, { FC, useContext } from "react";
 import SummaryTableItems from "@/components/admin/leave-summary/summary.table.items";
+import { LeaveSummaryContext } from "@/components/admin/leave-summary/leave.summary.page";
+import SummaryTableLoading from "@/components/admin/leave-summary/summary-table.loading";
 
 const SummaryTable: FC = () => {
+  const { data, error } = useContext(LeaveSummaryContext);
+
   return (
-    <table className={"w-full table-fixed"}>
+    <table className={"w-full table-auto"}>
       <thead>
         <tr>
           <th className={"border bg-[#F5F5F5] py-3 pl-3 text-left font-medium"}>
@@ -11,9 +15,6 @@ const SummaryTable: FC = () => {
           </th>
           <th className={"border bg-[#F5F5F5] py-3 pl-3 text-left font-medium"}>
             Date & Time
-          </th>
-          <th className={"border bg-[#F5F5F5] py-3 pl-3 text-left font-medium"}>
-            Duration
           </th>
           <th className={"border bg-[#F5F5F5] py-3 pl-3 text-left font-medium"}>
             Department
@@ -25,54 +26,14 @@ const SummaryTable: FC = () => {
             Attachment
           </th>
         </tr>
-        <SummaryTableItems
-          profile={"Jeremy Neigh"}
-          time={"9/23/16"}
-          duration={"15h 40m"}
-          department={"Finance"}
-          type={"Design"}
-          attachment={"DebitNoteMckee.jpg"}
-        />
-        <SummaryTableItems
-          profile={"Annette Black"}
-          time={"7/27/13"}
-          duration={"11h 45m"}
-          department={"Accounting"}
-          type={"Product"}
-          attachment={"debitnote_0310.xlsx"}
-        />
-        <SummaryTableItems
-          profile={"Theresa Webb"}
-          time={"11/7/16"}
-          duration={"10h 25m"}
-          department={"Front Desk"}
-          type={"Marketing"}
-          attachment={"McKeeDebit01.pdf"}
-        />
-        <SummaryTableItems
-          profile={"Kathryn Murphy"}
-          time={"6/19/14"}
-          duration={"16h 55m"}
-          department={"Houseman"}
-          type={"Support"}
-          attachment={"dealsheet2020.pdf"}
-        />
-        <SummaryTableItems
-          profile={"Courtney Henry"}
-          time={"7/11/19"}
-          duration={"15h 45m"}
-          department={"Laundry"}
-          type={"Operation"}
-          attachment={"debitnote_march.pdf"}
-        />
-        <SummaryTableItems
-          profile={"Jane Cooper"}
-          time={"8/2/19"}
-          duration={"10h 45m"}
-          department={"Legal"}
-          type={"HR"}
-          attachment={"dealsheet_march.xlsx"}
-        />
+        {!data &&
+          !error &&
+          [1, 2, 3, 4, 5].map((item) => <SummaryTableLoading key={item} />)}
+        {data &&
+          !error &&
+          data.items.map((data) => (
+            <SummaryTableItems key={data.id} data={data} />
+          ))}
       </thead>
     </table>
   );
