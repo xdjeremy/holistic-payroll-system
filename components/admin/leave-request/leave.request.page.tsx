@@ -4,7 +4,7 @@ import SearchBarLeave from "@/components/admin/leave-request/search-bar-leave";
 import TableLeave from "@/components/admin/leave-request/table-leave";
 import { pocketBase } from "@/utils";
 import useSWR from "swr";
-import { LeavesResponse, UsersResponse } from "@/types";
+import { LeavesResponse, LeavesStatusOptions, UsersResponse } from "@/types";
 import Pagination from "@/components/common/pagination";
 import { ListResult } from "pocketbase";
 import { any } from "prop-types";
@@ -33,7 +33,7 @@ const fetcher = async (query: any) => {
       .getList<LeavesResponse<TExpand>>(page, perPage, {
         sort: "-created",
         expand: "user",
-        filter: `user.name ~ '${searchQuery}' || leave_type ~ '${searchQuery}' || status ~ '${searchQuery}'`,
+        filter: `status = '${LeavesStatusOptions.pending}' && (user.name ~ '${searchQuery}' || leave_type ~ '${searchQuery}' || status ~ '${searchQuery}')`,
       });
   } catch (err: any) {
     throw new Error(err.data.message);
