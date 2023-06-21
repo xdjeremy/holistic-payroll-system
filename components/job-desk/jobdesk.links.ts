@@ -6,6 +6,7 @@ enum JobDeskPageTabs {
   ASSETS = "assets",
   HISTORY = "history",
   SALARY = "salary",
+  PAY_RUN = "pay run",
 }
 
 const JobDeskLinks: JobDeskPageTabs[] = [
@@ -16,6 +17,7 @@ const JobDeskLinks: JobDeskPageTabs[] = [
   JobDeskPageTabs.ASSETS,
   JobDeskPageTabs.HISTORY,
   JobDeskPageTabs.SALARY,
+  JobDeskPageTabs.PAY_RUN,
 ];
 
 export { JobDeskPageTabs, JobDeskLinks };
