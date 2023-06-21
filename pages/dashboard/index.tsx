@@ -40,11 +40,13 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
       };
     }
 
-    const user = await pb.collection("users").getOne(pb.authStore.model?.id);
+    const userData = await pb
+      .collection("users")
+      .getOne(pb.authStore.model?.id);
 
     return {
       props: {
-        user: JSON.stringify(user),
+        user: JSON.stringify(userData),
       },
     };
   } catch (_) {

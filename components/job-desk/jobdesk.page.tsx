@@ -8,8 +8,8 @@ import JobDeskLayout from "@/components/job-desk/jobdesk.layout";
 import AllowanceCard from "@/components/job-desk/allowance/allowance.card";
 import LeaveCard from "@/components/job-desk/leave/leave.card";
 import AddLeaveModal from "@/components/job-desk/leave/addLeave.modal";
-import FolderCard from "@/components/job-desk/folder/folder.card";
-import PayRunCard from "@/components/job-desk/pay-run/pay-run.card";
+import SalaryCard from "@/components/job-desk/salary/salary.card";
+import ProfileCard from "@/components/job-desk/profile/profile.card";
 
 const JobDeskPage = () => {
   const [activeTab, setActiveTab] = useState<JobDeskPageTabs>(
@@ -26,10 +26,10 @@ const JobDeskPage = () => {
         return <AllowanceCard />;
       case JobDeskPageTabs.LEAVE:
         return <LeaveCard />;
-      case JobDeskPageTabs.FOLDER:
-        return <FolderCard />;
-      case JobDeskPageTabs.PAY_RUN:
-        return <PayRunCard />;
+      case JobDeskPageTabs.SALARY:
+        return <SalaryCard />;
+      case JobDeskPageTabs.PROFILE:
+        return <ProfileCard />;
     }
   };
 

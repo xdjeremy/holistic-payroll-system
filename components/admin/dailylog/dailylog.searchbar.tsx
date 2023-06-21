@@ -1,9 +1,9 @@
 import React, { FC, useContext } from "react";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
-import { EmployeeContext } from "@/components/admin/all-employees/all-employees.page";
+import { DailyLogContext } from "@/components/admin/dailylog/dailylog.page";
 
-const SearchBar: FC = () => {
-  const { searchQuery, setSearchQuery } = useContext(EmployeeContext);
+const DailyLogSearchBar: FC = () => {
+  const { searchQuery, setSearchQuery } = useContext(DailyLogContext);
 
   return (
     <div className={"relative"}>
@@ -23,4 +23,4 @@ const SearchBar: FC = () => {
   );
 };
 
-export default SearchBar;
+export default DailyLogSearchBar;

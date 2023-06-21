@@ -42,7 +42,7 @@ const AllEmployeesPage: FC = () => {
   const [page, setPage] = useState<number>(1);
   const [searchQuery, setSearchQuery] = useState<string>("");
 
-  const [showModal, setShowModal] = useState<boolean>(true);
+  const [showModal, setShowModal] = useState<boolean>(false);
 
   const { data, error } = useSWR([page, perPage, searchQuery], getUsers);
 
@@ -71,7 +71,7 @@ const AllEmployeesPage: FC = () => {
       >
         <PageTitle title={"All Employee"}>
           <div className={"flex flex-row px-3"}>
-            <Button color={"black"}>
+            <Button onClick={() => setShowModal(true)} color={"black"}>
               <PlusIcon className={"mr-2 h-5 w-5"} />
               <span>Add Employee</span>
             </Button>
