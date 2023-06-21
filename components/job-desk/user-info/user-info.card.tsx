@@ -1,13 +1,7 @@
 import React, { FC } from "react";
 import UserProfileItem from "@/components/job-desk/user-info/user-profile.item";
 import UserInfoItem from "@/components/job-desk/user-info/user-info.item";
-import {
-  CalendarIcon,
-  ClipboardIcon,
-  EnvelopeIcon,
-  UserIcon,
-  WalletIcon,
-} from "@heroicons/react/24/outline";
+import { CalendarIcon, ClipboardIcon, EnvelopeIcon, UserIcon, WalletIcon } from "@heroicons/react/24/outline";
 import { useUser } from "@/context";
 import { format } from "date-fns";
 
@@ -35,7 +29,7 @@ const UserInfoCard: FC = () => {
             value={
               new Intl.NumberFormat("en-US", {
                 style: "currency",
-                currency: "PHP",
+                currency: "PHP,
               }).format(user?.salary || 0) || ""
             }
             label={"Salary"}

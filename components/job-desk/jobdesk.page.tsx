@@ -5,6 +5,7 @@ import UserInfoCard from "@/components/job-desk/user-info/user-info.card";
 import AttendanceCard from "@/components/job-desk/attendance/attendance.card";
 import { JobDeskPageTabs } from "@/components/job-desk/jobdesk.links";
 import JobDeskLayout from "@/components/job-desk/jobdesk.layout";
+import AllowanceCard from "@/components/job-desk/allowance/allowance.card";
 import LeaveCard from "@/components/job-desk/leave/leave.card";
 import AddLeaveModal from "@/components/job-desk/leave/addLeave.modal";
 import SalaryCard from "@/components/job-desk/salary/salary.card";
@@ -12,7 +13,7 @@ import ProfileCard from "@/components/job-desk/profile/profile.card";
 
 const JobDeskPage = () => {
   const [activeTab, setActiveTab] = useState<JobDeskPageTabs>(
-    JobDeskPageTabs.ATTENDANCE
+    JobDeskPageTabs.ALLOWANCE
   );
 
   const [openAction, setOpenAction] = useState<boolean>(false);
@@ -21,6 +22,8 @@ const JobDeskPage = () => {
     switch (activeTab) {
       case JobDeskPageTabs.ATTENDANCE:
         return <AttendanceCard />;
+      case JobDeskPageTabs.ALLOWANCE:
+        return <AllowanceCard />;
       case JobDeskPageTabs.LEAVE:
         return <LeaveCard />;
       case JobDeskPageTabs.SALARY:
